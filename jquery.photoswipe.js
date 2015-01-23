@@ -56,7 +56,7 @@
             var hash = window.location.hash.substring(1),
             params = {};
 
-            if(hash.length < 5) { // pid=1
+            if(hash.length < 5) {
                 return params;
             }
 
@@ -85,19 +85,18 @@
         
         var openGallery = function(gid,pid){
             var pswpElement = document.querySelectorAll('.pswp')[0],
-                items = galleries[gid-1].items;
-            console.log(items);
-            var options = {
-                index: pid,
-                galleryUID: gid,
-                getThumbBoundsFn: function(index) {
-                    var thumbnail = items[index].el.children[0],
-                        pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-                        rect = thumbnail.getBoundingClientRect(); 
+                items = galleries[gid-1].items,
+                options = {
+                    index: pid,
+                    galleryUID: gid,
+                    getThumbBoundsFn: function(index) {
+                        var thumbnail = items[index].el.children[0],
+                            pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                            rect = thumbnail.getBoundingClientRect(); 
 
-                    return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
-                }
-            };
+                        return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+                    }
+                };
             $.extend(options,_options);
             var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
             gallery.init();
