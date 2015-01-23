@@ -1,0 +1,13 @@
+{
+  "name": "jquery.photoswipe",
+  "version": "0.1",
+  "main": "jquery.photoswipe.js",
+  "description": "jQuery Plugin for PhotoSwipe by Dmitry Semenov",
+  "ignore": [
+    "**/.*",
+    "test"
+  ],
+  "dependencies": {
+    "photoswipe": "4.0.5"
+  }
+}
