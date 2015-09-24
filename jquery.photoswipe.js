@@ -23,8 +23,8 @@
                 } else {
                     throw SyntaxError('Attribute data-size is missing or is an incorrect format. E.g. data-size="[width]x[height]"');
                 }
-                $.each(galleries,function(key,elem){
-                    if(elem.name === name){
+                $.each(galleries,function(key,gallery){
+                    if(gallery.name === name){
                         itemExists = true;
                     }
                 });
@@ -34,8 +34,8 @@
                         items: []
                     });
                 }
-                $.each(galleries,function(key,elem){
-                    if(elem.name === name){
+                $.each(galleries,function(key,gallery){
+                    if(gallery.name === name){
                         var item = {
                             src: src,
                             w: parseInt(size[0],10),
@@ -44,8 +44,8 @@
                             el: $anchor.get(0)
                         };
                         $anchor.data('gallery-id',key+1);
-                        $anchor.data('photo-id',elem.items.length);
-                        elem.items.push(item);
+                        $anchor.data('photo-id',gallery.items.length);
+                        gallery.items.push(item);
                     }
                 });
                 $anchor.on('click',function(e){
@@ -103,8 +103,11 @@
                     }
                 };
             $.extend(options,_options);
-            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-            gallery.init();
+            var pswpInstance = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+            pswpInstance.init();
+            if($.isFunction(options.onInit)) {
+                options.onInit(pswpInstance);
+            }
         };
         
         // initialize
