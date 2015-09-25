@@ -33,72 +33,72 @@
         <h1>Gallery1</h1>
         <div class="row">
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/1/" data-size="800x600" data-caption="<p>Opis</p><small>opis mały</small>" rel="photoswipe-gallery1">
+                <a href="http://lorempixel.com/800/600/food/1/" data-size="800x600" data-caption="<p>Opis</p><small>opis mały</small>" class="photoswipe-gallery-1">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/1/"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/2/" data-size="800x600" rel="photoswipe-gallery1">
+                <a href="http://lorempixel.com/800/600/food/2/" data-size="800x600" class="photoswipe-gallery-1">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/2/"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/3/" data-size="800x600" rel="photoswipe-gallery1">
+                <a href="http://lorempixel.com/800/600/food/3/" data-size="800x600" class="photoswipe-gallery-1">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/3/"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/4/" data-size="800x600" rel="photoswipe-gallery1">
+                <a href="http://lorempixel.com/800/600/food/4/" data-size="800x600" class="photoswipe-gallery-1">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/4/"/>
                 </a>
             </div>
         </div>
         <h1>Gallery2</h1>
-        <div class="row">
+        <div class="row photoswipe-gallery-2">
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/5/" data-size="800x600" rel="photoswipe-gallery2">
+                <a href="http://lorempixel.com/800/600/food/5/" data-size="800x600">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/5/"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/6/" data-size="800x600" rel="photoswipe-gallery2">
+                <a href="http://lorempixel.com/800/600/food/6/" data-size="800x600">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/6/"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/7/" data-size="800x600" rel="photoswipe-gallery2">
+                <a href="http://lorempixel.com/800/600/food/7/" data-size="800x600">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/7/"/>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="http://lorempixel.com/800/600/food/8/" data-size="800x600" rel="photoswipe-gallery2">
+                <a href="http://lorempixel.com/800/600/food/8/" data-size="800x600">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/8/"/>
                 </a>
             </div>
         </div>
         <h1>Gallery3</h1>
-        <div class="row">
+        <div class="row photoswipe-gallery">
             <div class="col-md-6">
-                <a href="http://lorempixel.com/800/600/food/9/" data-size="800x600" rel="photoswipe-gallery3">
+                <a href="http://lorempixel.com/800/600/food/9/" data-size="800x600">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/9/"/>
                 </a>
             </div>
             <div class="col-md-6">
-                <a href="http://lorempixel.com/800/600/food/10/" data-size="800x600" rel="photoswipe-gallery3">
+                <a href="http://lorempixel.com/800/600/food/10/" data-size="800x600">
                     <img class="img-responsive" src="http://lorempixel.com/800/600/food/10/"/>
                 </a>
             </div>
         </div>
         <h1>Gallery4</h1>
-        <div class="row">
+        <div class="row photoswipe-gallery">
             <div class="col-md-6">
-                <a href="http://lorempixel.com/600/600/food/0/" data-size="600x600" rel="photoswipe-gallery4">
+                <a href="http://lorempixel.com/600/600/food/0/" data-size="600x600">
                     <img class="img-responsive" src="http://lorempixel.com/600/600/food/0/"/>
                 </a>
             </div>
         </div>
         <h1>Gallery5</h1>
-        <div class="row">
+        <div class="row photoswipe-gallery">
             <div class="col-md-6">
                 <a href="http://lorempixel.com/600/600/food/0/" data-size="600x600" rel="photoswipe">
                     <img class="img-responsive" src="http://lorempixel.com/600/600/food/0/"/>
@@ -109,8 +109,10 @@
     <script>
         
         $(function(){
+
+            $(".photoswipe-gallery-1").photoswipe();
             
-            $("a[rel^='photoswipe']").photoswipe({
+            $(".photoswipe-gallery-2 a").photoswipe({
                 shareEl: true,
                 shareButtons: [
                     {id:'facebook', label:'Share on Facebook', url:'https://www.facebook.com/sharer/sharer.php?u='},
@@ -118,6 +120,16 @@
                     {id:'pinterest', label:'Pin it', url:'http://www.pinterest.com/pin/create/button/?url=&media=&description='},
                     {id:'download', label:'Download image', url:'', download:true}
                 ]
+            });
+
+            // Seperate Galleries
+            $('.photoswipe-gallery').each(function(i) { // the containers for the other two galleries
+                var links = $(this).find('a');
+                links.photoswipe({
+                    bgOpacity: 0.8,
+                    loop: true,
+                    shareEl: false
+                });
             });
             
         });
