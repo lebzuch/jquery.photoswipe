@@ -128,7 +128,15 @@
                 links.photoswipe({
                     bgOpacity: 0.8,
                     loop: true,
-                    shareEl: false
+                    onInit: function(pswp) {
+                        // Listen for "helloWorld" event
+                        pswp.listen('helloWorld', function(name) {
+                            alert('Name is: ' + name);
+                        });
+
+                        // Trigger "helloWorld" event
+                        pswp.shout('helloWorld', 'John' /* you may pass more arguments */);
+                    }
                 });
             });
             

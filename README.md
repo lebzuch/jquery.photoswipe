@@ -2,7 +2,7 @@
 
 To use `jquery.photoswipe.js` include the following files in the `<head>` of your markup
 
-```
+```html
 	<script type='text/javascript' src='path/to/jquery.min.js'></script>
     
     <link rel='stylesheet' href='path/to/photoswipe.css' type='text/css' media='all' />
@@ -16,7 +16,7 @@ To use `jquery.photoswipe.js` include the following files in the `<head>` of you
 
 In your markup make sure to set the `data-size` attirbute with the `[width]x[height]` of the image
 
-```
+```html
     <h1>Gallery 1</h1>
     <div>
             <a href="http://lorempixel.com/800/600/food/1/" data-size="800x600" data-title="<p>Opis</p><small>opis mały</small>" class="photoswipe-gallery-1">
@@ -67,7 +67,7 @@ In your markup make sure to set the `data-size` attirbute with the `[width]x[hei
 
 Then in your javascript select all anchors you want in a single gallery and call the `photoswipe({options})` jQuery function
 
-```
+```javascript
 	$(".photoswipe-gallery-1").photoswipe();
 
     // Seperate Galleries
@@ -78,6 +78,25 @@ Then in your javascript select all anchors you want in a single gallery and call
             loop: true,
             shareEl: false
         });
+    });
+
+```
+
+# Access PhotoSwipe Instance
+
+`onInit` has been added to the options to make enable interaction with the PhotoSwipe instance
+
+```javascript
+    $('selector').photoswipe({
+        onInit: function(pswp) {
+            // Listen for "helloWorld" event
+            pswp.listen('helloWorld', function(name) {
+                alert('Name is: ' + name);
+            });
+
+            // Trigger "helloWorld" event
+            pswp.shout('helloWorld', 'John' /* you may pass more arguments */);
+        }
     });
 
 ```
